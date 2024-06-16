@@ -15,11 +15,16 @@ jobs:
       with:
         fetch-depth: 2
 
-    - name: Install NPM
-      run: sudo apt-get install -y npm
+    - name: Install Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '16' # Specify the Node.js version required for your project
 
     - name: Install NPM Dependencies
-      run: npm install && npm run build
+      run: npm install
+
+    - name: Build React App
+      run: npm run build
 
     - name: 📂 Sync files via FTP
       uses: SamKirkland/FTP-Deploy-Action@v4.3.4
